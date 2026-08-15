@@ -129,7 +129,9 @@ export function ProductCard({
             <div className="text-[11px] text-vv-mute">{p.unit}</div>
           </div>
         </div>
-        <p className="text-xs text-vv-mute">{p.origin} · {p.tagline}</p>
+        {/* flex-1 lets the tagline absorb the spare height, so the button
+            lands on the same line across every card in a row. */}
+        <p className="flex-1 text-xs text-vv-mute">{p.origin} · {p.tagline}</p>
         <button
           onClick={() => {
             add(p.id);
