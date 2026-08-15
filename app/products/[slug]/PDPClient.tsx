@@ -92,7 +92,7 @@ export default function PDPClient({
       <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
         {/* Gallery */}
         <div>
-          <div className="relative aspect-square overflow-hidden rounded-3xl border border-vv-line bg-[#fffaf2] shadow-soft">
+          <div className="relative aspect-square overflow-hidden rounded-3xl border border-vv-line bg-white shadow-soft">
             <AnimatePresence mode="wait">
               <motion.div
                 key={imageIndex}
@@ -107,7 +107,7 @@ export default function PDPClient({
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-contain p-8 sm:p-10"
+                  className="object-cover"
                 />
               </motion.div>
             </AnimatePresence>
@@ -126,7 +126,7 @@ export default function PDPClient({
                   key={i}
                   onClick={() => setImageIndex(i)}
                   className={cn(
-                    "relative aspect-square overflow-hidden rounded-xl border-2 bg-[#fffaf2]",
+                    "relative aspect-square overflow-hidden rounded-xl border-2 bg-white",
                     i === imageIndex ? "border-vv-leafDark" : "border-transparent opacity-70 hover:opacity-100"
                   )}
                 >

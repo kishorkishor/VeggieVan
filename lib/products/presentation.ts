@@ -8,13 +8,15 @@ export const HOME_HERO_IMAGE = {
 };
 
 export const HERO_PRODUCT_IMAGES = [
-  { src: `${CATALOG_IMAGE_BASE}/tomato.svg`, alt: "Tomatoes on a warm neutral background" },
-  { src: `${CATALOG_IMAGE_BASE}/bottle-gourd.svg`, alt: "Bottle gourd (lau) on a warm neutral background" },
-  { src: `${CATALOG_IMAGE_BASE}/palong-shak.svg`, alt: "A bunch of palong shak on a warm neutral background" },
+  { src: `${CATALOG_IMAGE_BASE}/tomato.webp`, alt: "Fresh tomatoes on a white background" },
+  { src: `${CATALOG_IMAGE_BASE}/bottle-gourd.webp`, alt: "A bottle gourd (lau) on a white background" },
+  { src: `${CATALOG_IMAGE_BASE}/green-chilli.webp`, alt: "Fresh green chillies on a white background" },
 ];
 
+// One photograph per product. There is no second angle to show, so the PDP
+// renders no thumbnail strip rather than repeating the same shot twice.
 export function productImagesFor(slug: string) {
-  return [`${CATALOG_IMAGE_BASE}/${slug}.svg`, `${CATALOG_IMAGE_BASE}/${slug}-detail.svg`];
+  return [`${CATALOG_IMAGE_BASE}/${slug}.webp`];
 }
 
 export function presentProduct<T extends ProductRow>(product: T): T {

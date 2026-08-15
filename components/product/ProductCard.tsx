@@ -45,7 +45,6 @@ export function ProductCard({
   const inWl = wl.ids.includes(p.id);
   const inCmp = cmp.ids.includes(p.id);
   const soldOut = p.stock <= 0;
-  const usesCatalogArt = p.images[0]?.startsWith("/product-images/veggievan-catalog");
 
   // Baskets advertise what they save against buying the same five items
   // separately. Derived, never hardcoded, so it tracks the catalog.
@@ -62,16 +61,13 @@ export function ProductCard({
       transition={{ delay: Math.min(index, 10) * 0.03 }}
       className="group card relative flex flex-col overflow-hidden hover:-translate-y-1 hover:shadow-lift"
     >
-      <Link href={`/products/${p.slug}`} className="relative block aspect-square overflow-hidden bg-[#fffaf2]">
+      <Link href={`/products/${p.slug}`} className="relative block aspect-square overflow-hidden bg-white">
         <Image
           src={p.images[0]}
           alt={p.name}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className={cn(
-            "transition-transform duration-500 group-hover:scale-[1.06]",
-            usesCatalogArt ? "object-contain p-5 sm:p-6" : "object-cover"
-          )}
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-3">
           <div className="flex flex-col gap-1">
