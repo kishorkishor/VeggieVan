@@ -9,9 +9,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const NAV = [
   { href: "/products", label: "Shop" },
-  { href: "/products?category=essentials", label: "Essentials" },
-  { href: "/products?category=vegetables", label: "Family Fresh" },
   { href: "/products?category=baskets", label: "Baskets" },
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/#delivery-areas", label: "Delivery areas" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -36,10 +37,8 @@ export function Header() {
     <>
       {/* announcement strip */}
       <div className="bg-vv-ink text-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-6 px-4 py-1.5 text-xs tracking-wide">
-          <span>৳40 delivery, any order size</span>
-          <span className="hidden h-1 w-1 rounded-full bg-white/40 sm:inline-block" />
-          <span className="hidden sm:inline">Order by 11:59 PM · at your door from 7:00 AM</span>
+        <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-1.5 text-xs tracking-wide">
+          <span>Order window · 8:00 PM to 11:59 PM</span>
         </div>
       </div>
 

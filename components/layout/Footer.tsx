@@ -2,20 +2,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
-import { Facebook, Clock, Sunrise, MapPin } from "lucide-react";
-import { DELIVERY_ZONES, ORDER_WINDOW, DELIVERY_FROM } from "@/lib/delivery";
+import { Facebook } from "lucide-react";
+import { DELIVERY_ZONES, DELIVERY_FROM } from "@/lib/delivery";
 
 export function Footer() {
   const pathname = usePathname();
   if (pathname?.startsWith("/admin")) return null;
   return (
-    <footer className="border-t border-vv-line bg-white">
+    <footer id="contact" className="scroll-mt-24 border-t border-vv-line bg-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-vv-mute">
-            Bringing fresh vegetables home every morning. Pre-ordered tonight, sourced at Karwan Bazar
-            overnight, delivered across Dhaka from {DELIVERY_FROM}.
+            Morning delivery from {DELIVERY_FROM}.
           </p>
           <address className="mt-4 max-w-xs text-sm not-italic text-vv-mute">
             House 24, Road 7, Block D
@@ -36,19 +35,17 @@ export function Footer() {
         {[
           { title: "Shop", links: [
             { href: "/products", label: "All vegetables" },
-            { href: "/products?category=essentials", label: "Everyday essentials" },
-            { href: "/products?category=vegetables", label: "Family fresh" },
             { href: "/products?category=baskets", label: "Baskets" },
+            { href: "/#how-it-works", label: "How it works" },
+            { href: "/#delivery-areas", label: "Delivery areas" },
           ]},
           { title: "Delivery areas", links: DELIVERY_ZONES.map((zone) => ({
-            href: "/products",
+            href: "/#delivery-areas",
             label: zone,
           }))},
           { title: "Support", links: [
-            { href: "#", label: "How ordering works" },
-            { href: "#", label: "Delivery & timings" },
-            { href: "#", label: "Complaints & refunds" },
-            { href: "#", label: "Contact us" },
+            { href: "/#how-it-works", label: "How it works" },
+            { href: "/#contact", label: "Contact" },
           ]},
         ].map((col) => (
           <div key={col.title}>
@@ -68,12 +65,7 @@ export function Footer() {
         ))}
       </div>
       <div className="border-t border-vv-line">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-4 text-xs text-vv-mute sm:flex-row">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> Order {ORDER_WINDOW.openLabel}–{ORDER_WINDOW.closeLabel}</span>
-            <span className="flex items-center gap-1.5"><Sunrise className="h-3.5 w-3.5" /> Delivery from {DELIVERY_FROM}</span>
-            <span className="hidden items-center gap-1.5 sm:flex"><MapPin className="h-3.5 w-3.5" /> {DELIVERY_ZONES.length} Dhaka areas</span>
-          </div>
+        <div className="mx-auto max-w-7xl px-4 py-4 text-xs text-vv-mute">
           <span>© {new Date().getFullYear()} VeggieVan. All rights reserved.</span>
         </div>
       </div>
