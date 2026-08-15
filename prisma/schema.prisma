@@ -1,0 +1,171 @@
+// Prisma schema. Use `db push` for the local demo only. Existing production
+// databases require a reviewed migration and safe index-build plan.
+// See README → "Database setup".
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrderStatus {
+  pending
+  processing
+  shipped
+  delivered
+  cancelled
+}
+
+enum Category {
+  essentials
+  vegetables
+  baskets
+}
+
+enum Role {
+  admin
+  staff
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([email])
+}
+
+model Product {
+  id          String   @id
+  slug        String   @unique
+  name        String
+  tagline     String
+  description String
+  price       Int // cents
+  unit        String
+  category    Category
+  origin      String
+  organic     Boolean  @default(false)
+  inSeason   Boolean  @default(true)
+  featured    Boolean  @default(false)
+  stock       Int      @default(0)
+  images      String[]
+  // Nutrition denormalized as Json — simple, evolvable, and the storefront
+  // renders it as a single block anyway.
+  nutrition   Json
+  tags        String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([slug])
+  @@index([stock])
+  @@index([featured])
+}
+
+model Order {
+  id        String      @id
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  status    OrderStatus @default(pending)
+
+  // Customer (denormalized — we don't have an authenticated customer model yet).
+  // Phone is the identifier that matters in Dhaka: the driver calls it on
+  // arrival and most customers order without an email address at all.
+  customerName    String
+  customerPhone   String
+  customerEmail   String?
+  customerAddress String
+  customerZone    String // one of the five VeggieVan delivery areas
+
+  // Money is stored in cents (Int) to avoid float drift.
+  subtotal Int
+  shipping Int
+  total    Int
+
+  items OrderItem[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([customerPhone])
+  @@index([customerZone])
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  order     Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
+  productId String
+  name      String // snapshot — product name at time of purchase
+  qty       Int
+  price     Int // unit price in cents at time of purchase
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model GrowthSession {
+  id               String               @id
+  firstSeenAt      DateTime             @default(now())
+  lastSeenAt       DateTime             @updatedAt
+  utmSource        String?
+  utmMedium        String?
+  utmCampaign      String?
+  landingPath      String?
+  referrerCategory String?
+  demo             Boolean              @default(false)
+  events           GrowthEvent[]
+  exposures        ExperimentExposure[]
+
+  @@index([firstSeenAt])
+  @@index([utmSource, utmCampaign])
+}
+
+model GrowthEvent {
+  id           String        @id
+  session      GrowthSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  sessionId    String
+  name         String
+  occurredAt   DateTime
+  receivedAt   DateTime      @default(now())
+  productId    String?
+  orderId      String?
+  cartValue    Int?
+  cartSize     Int?
+  quantity     Int?
+  unitPrice    Int?
+  placement    String?
+  checkoutStep Int?
+  demo         Boolean       @default(false)
+
+  @@index([name, occurredAt])
+  @@index([sessionId, occurredAt])
+  @@index([occurredAt])
+  @@index([receivedAt])
+  @@index([orderId])
+}
+
+model ExperimentExposure {
+  id         String        @id @default(cuid())
+  session    GrowthSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  sessionId  String
+  experiment String
+  version    Int
+  variant    String
+  exposedAt  DateTime
+  receivedAt DateTime      @default(now())
+  demo       Boolean       @default(false)
+
+  @@unique([sessionId, experiment, version])
+  @@index([experiment, version, variant])
+  @@index([exposedAt])
+  @@index([receivedAt])
+}

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+:root {
+  --vv-red: #e63946;
+  --vv-yellow: #f4d03f;
+  --vv-orange: #f39c12;
+  --vv-leaf: #7cb342;
+  --vv-cream: #fff8ec;
+  --vv-ink: #1b2a1f;
+}
+
+html,
+body {
+  background: var(--vv-cream);
+  color: var(--vv-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #7cb34233;
+  color: var(--vv-ink);
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+.scroll-hide {
+  scrollbar-width: none;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-vv-leaf px-5 py-2.5 text-sm font-medium text-white shadow-soft transition hover:bg-vv-leafDark active:scale-95;
+}
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-vv-ink/15 bg-white px-5 py-2.5 text-sm font-medium text-vv-ink transition hover:border-vv-leaf hover:text-vv-leafDark active:scale-95;
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-vv-ink/70 transition hover:bg-vv-ink/5 hover:text-vv-ink;
+}
+
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-vv-ink/10 bg-white px-3 py-1 text-xs font-medium text-vv-ink/70 transition hover:border-vv-leaf hover:text-vv-leafDark;
+}
+.chip-active {
+  @apply border-vv-leaf bg-vv-leaf/10 text-vv-leafDark;
+}
+
+.card {
+  @apply rounded-2xl border border-vv-line bg-white shadow-soft transition;
+}
+
+.input {
+  @apply w-full rounded-xl border border-vv-line bg-white px-4 py-2.5 text-sm text-vv-ink outline-none transition placeholder:text-vv-mute focus:border-vv-leaf focus:ring-2 focus:ring-vv-leaf/20;
+}
+
+.label {
+  @apply mb-1.5 block text-xs font-medium uppercase tracking-wide text-vv-mute;
+}

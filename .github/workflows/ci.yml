@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        # Auth.js v5 requires AUTH_SECRET to be present at build time.
+        # This is a non-sensitive dummy value used only to satisfy the
+        # build step in CI; it is never used to sign real sessions.
+        env:
+          AUTH_SECRET: ci-dummy-secret-for-build-only-do-not-use
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Check for E2E secrets
+        # Fork PRs cannot read repository secrets. DB-dependent E2E (admin
+        # login) is skipped there; the DB-free storefront E2E always runs.
+        id: e2e-secrets
+        run: echo "has=${{ secrets.DATABASE_URL != '' && secrets.AUTH_SECRET != '' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Start server for DB-free storefront E2E
+        # Storefront coverage is intentionally independent of PostgreSQL even
+        # when repository secrets are available for the later admin flow.
+        run: |
+          node_modules/.bin/next start > "$RUNNER_TEMP/rype-storefront.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/rype-storefront.pid"
+        env:
+          AUTH_SECRET: ci-dummy-secret-for-build-only-do-not-use
+          AUTH_URL: http://localhost:3000
+
+      - name: Wait for storefront server
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run storefront E2E (no DB required)
+        run: npx playwright test e2e/storefront.spec.ts
+        env:
+          AUTH_URL: http://localhost:3000
+
+      - name: Stop storefront server
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/rype-storefront.pid" ]; then
+            kill "$(cat "$RUNNER_TEMP/rype-storefront.pid")" || true
+          fi
+
+      - name: Start server for DB-backed admin E2E
+        if: steps.e2e-secrets.outputs.has == 'true'
+        run: |
+          node_modules/.bin/next start > "$RUNNER_TEMP/rype-admin.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/rype-admin.pid"
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          AUTH_URL: http://localhost:3000
+
+      - name: Wait for admin server
+        if: steps.e2e-secrets.outputs.has == 'true'
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
+      - name: Run admin E2E
+        if: steps.e2e-secrets.outputs.has == 'true'
+        run: npx playwright test e2e/admin.spec.ts
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          AUTH_URL: http://localhost:3000
+
+      - name: Stop admin server
+        if: always() && steps.e2e-secrets.outputs.has == 'true'
+        run: |
+          if [ -f "$RUNNER_TEMP/rype-admin.pid" ]; then
+            kill "$(cat "$RUNNER_TEMP/rype-admin.pid")" || true
+          fi

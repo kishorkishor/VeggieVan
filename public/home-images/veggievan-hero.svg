@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" role="img" aria-labelledby="t d">
+<title id="t">VeggieVan at first light</title>
+<desc id="d">A green delivery van parked on a quiet Dhaka street at dawn, loaded with crates of fresh vegetables.</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#FFE3B8"/>
+    <stop offset="55%" stop-color="#FFF2DC"/>
+    <stop offset="100%" stop-color="#FFF8EC"/>
+  </linearGradient>
+  <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#FFD98A" stop-opacity="0.95"/>
+    <stop offset="100%" stop-color="#FFD98A" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="150%">
+    <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#1b2a1f" flood-opacity=".18"/>
+  </filter>
+</defs>
+
+<rect width="1200" height="1000" fill="url(#sky)"/>
+<circle cx="880" cy="230" r="290" fill="url(#sun)"/>
+<circle cx="880" cy="230" r="74" fill="#FFC96B" opacity=".85"/>
+
+<!-- distant city -->
+<g fill="#C6CFBE" opacity=".55">
+  <rect x="40" y="330" width="112" height="290" rx="6"/>
+  <rect x="168" y="392" width="88" height="228" rx="6"/>
+  <rect x="272" y="286" width="128" height="334" rx="6"/>
+  <rect x="416" y="366" width="96" height="254" rx="6"/>
+  <rect x="700" y="352" width="118" height="268" rx="6"/>
+  <rect x="836" y="410" width="86" height="210" rx="6"/>
+  <rect x="940" y="316" width="132" height="304" rx="6"/>
+  <rect x="1088" y="392" width="84" height="228" rx="6"/>
+</g>
+<g fill="#FFF8EC" opacity=".5">
+  <rect x="62" y="360" width="20" height="26"/><rect x="98" y="360" width="20" height="26"/>
+  <rect x="62" y="410" width="20" height="26"/><rect x="98" y="410" width="20" height="26"/>
+  <rect x="296" y="320" width="22" height="28"/><rect x="342" y="320" width="22" height="28"/>
+  <rect x="296" y="376" width="22" height="28"/><rect x="342" y="376" width="22" height="28"/>
+  <rect x="964" y="350" width="22" height="28"/><rect x="1012" y="350" width="22" height="28"/>
+  <rect x="964" y="406" width="22" height="28"/><rect x="1012" y="406" width="22" height="28"/>
+</g>
+
+<!-- trees -->
+<g>
+  <rect x="596" y="524" width="14" height="98" fill="#8A6B45"/>
+  <circle cx="603" cy="500" r="62" fill="#6FA24C" opacity=".9"/>
+  <circle cx="562" cy="524" r="42" fill="#5C8F41" opacity=".9"/>
+  <circle cx="644" cy="522" r="46" fill="#7DB259" opacity=".9"/>
+</g>
+
+<!-- road -->
+<rect x="0" y="620" width="1200" height="380" fill="#EFE7D6"/>
+<rect x="0" y="620" width="1200" height="10" fill="#DFD4BE"/>
+<g fill="#D9C9AD" opacity=".7">
+  <rect x="60" y="806" width="118" height="9" rx="4"/>
+  <rect x="250" y="806" width="118" height="9" rx="4"/>
+  <rect x="440" y="806" width="118" height="9" rx="4"/>
+  <rect x="630" y="806" width="118" height="9" rx="4"/>
+  <rect x="820" y="806" width="118" height="9" rx="4"/>
+  <rect x="1010" y="806" width="118" height="9" rx="4"/>
+</g>
+
+<!-- ── van ─────────────────────────────────────────────────────────── -->
+<g filter="url(#sh)">
+  <ellipse cx="620" cy="742" rx="360" ry="26" fill="#1b2a1f" opacity=".12"/>
+
+  <!-- cargo box -->
+  <rect x="330" y="404" width="470" height="288" rx="26" fill="#5FA845"/>
+  <rect x="330" y="404" width="470" height="60" rx="26" fill="#6FBB52"/>
+  <!-- wordmark panel -->
+  <rect x="376" y="480" width="378" height="128" rx="16" fill="#FFF8EC"/>
+  <text x="565" y="546" font-family="Georgia, 'Times New Roman', serif" font-size="62" font-weight="700" fill="#2F6B24" text-anchor="middle">VeggieVan</text>
+  <text x="565" y="584" font-family="Inter, system-ui, sans-serif" font-size="21" letter-spacing="2.4" fill="#6B7A6E" text-anchor="middle">FRESH BY 7 AM</text>
+
+  <!-- cabin -->
+  <path d="M800 460 L928 460 C960 460 986 480 1000 512 L1030 584 C1036 600 1040 616 1040 632 L1040 692 L800 692 Z" fill="#4E9439"/>
+  <path d="M812 480 L916 480 C940 480 958 496 970 522 L992 572 L812 572 Z" fill="#CFE6F2"/>
+  <path d="M812 480 L868 480 L868 572 L812 572 Z" fill="#E4F1F8" opacity=".7"/>
+  <rect x="800" y="596" width="240" height="16" fill="#3D7A2B" opacity=".5"/>
+  <circle cx="1030" cy="620" r="13" fill="#F4D03F"/>
+
+  <!-- bumper + wheels -->
+  <rect x="326" y="686" width="720" height="24" rx="12" fill="#3D7A2B"/>
+  <circle cx="452" cy="716" r="62" fill="#25321F"/>
+  <circle cx="452" cy="716" r="28" fill="#D9D3C2"/>
+  <circle cx="916" cy="716" r="62" fill="#25321F"/>
+  <circle cx="916" cy="716" r="28" fill="#D9D3C2"/>
+</g>
+
+<!-- ── crates of produce in the foreground ─────────────────────────── -->
+<g filter="url(#sh)">
+  <!-- left crate -->
+  <rect x="96" y="646" width="228" height="126" rx="12" fill="#C79A5E"/>
+  <rect x="96" y="646" width="228" height="18" rx="9" fill="#DCB37A"/>
+  <g opacity=".35" fill="#A87F45">
+    <rect x="140" y="676" width="10" height="80"/><rect x="204" y="676" width="10" height="80"/><rect x="268" y="676" width="10" height="80"/>
+  </g>
+  <!-- produce spilling over the rim -->
+  <circle cx="146" cy="638" r="40" fill="#D8382F"/>
+  <circle cx="158" cy="626" r="14" fill="#EF6A52" opacity=".6"/>
+  <circle cx="216" cy="628" r="44" fill="#B58BB0"/>
+  <ellipse cx="286" cy="640" rx="46" ry="36" fill="#C9A26B" transform="rotate(-12 286 640)"/>
+  <path d="M186 592 C 210 578, 226 594, 186 610 C 146 594, 162 578, 186 592 Z" fill="#5F923E" transform="rotate(-24 186 592)"/>
+  <path d="M252 590 C 276 576, 292 592, 252 608 C 212 592, 228 576, 252 590 Z" fill="#6FA045" transform="rotate(22 252 590)"/>
+
+  <!-- right crate -->
+  <rect x="1004" y="672" width="180" height="104" rx="12" fill="#C79A5E"/>
+  <rect x="1004" y="672" width="180" height="16" rx="8" fill="#DCB37A"/>
+  <ellipse cx="1052" cy="662" rx="40" ry="30" fill="#A7C96A" transform="rotate(-14 1052 662)"/>
+  <ellipse cx="1130" cy="660" rx="34" ry="42" fill="#5B2A63" transform="rotate(10 1130 660)"/>
+  <path d="M1092 618 C 1114 606, 1128 620, 1092 634 C 1056 620, 1070 606, 1092 618 Z" fill="#4F8236" transform="rotate(-18 1092 618)"/>
+</g>
+</svg>
