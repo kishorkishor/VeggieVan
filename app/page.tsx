@@ -37,10 +37,7 @@ export default async function Home() {
         </div>
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:min-h-[560px] lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 lg:py-16">
           <div className="animate-fade-up">
-            <div className="text-xs font-semibold uppercase tracking-[0.24em] text-vv-mute">
-              Fresh vegetable delivery · Dhaka
-            </div>
-            <h1 className="mt-5 max-w-lg font-display text-4xl font-semibold leading-[1.05] tracking-tight text-vv-ink sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-lg font-display text-2xl font-semibold leading-[1.05] tracking-tight text-vv-ink sm:text-3xl lg:text-4xl">
               Bringing fresh vegetables home every morning.
             </h1>
             <p className="mt-5 max-w-md text-base leading-7 text-vv-ink/75 sm:text-lg sm:leading-8">
@@ -56,7 +53,7 @@ export default async function Home() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-vv-line pt-5">
-              <Fact icon={<Moon />} label="Evening orders" />
+              <Fact icon={<Moon />} label="Freshly sourced overnight" />
               <Fact icon={<Sunrise />} label={`Delivery starts at ${DELIVERY_FROM}`} />
               <Fact icon={<MapPin />} label={`${DELIVERY_ZONES.length} areas in Dhaka`} />
             </div>
