@@ -12,6 +12,10 @@ const config: Config = {
         // VeggieVan: produce-green led, with the tomato-red / carrot-orange
         // accent pair called for in the business plan's brand direction.
         vv: {
+          // The two official logo colours. Taken from the brand artwork, so
+          // the wordmark in the header matches public/logo.svg exactly.
+          forest: "#0B4427",
+          fresh: "#498E32",
           red: "#E63946", // tomato accent
           yellow: "#F4D03F", // lemon / mustard-flower accent
           orange: "#F39C12", // carrot accent
