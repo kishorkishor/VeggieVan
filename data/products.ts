@@ -51,7 +51,7 @@ export function categoryLabel(id: string): string {
   return CATEGORIES.find((c) => c.id === id)?.label ?? id;
 }
 
-const SOURCE = "Karwan Bazar, Dhaka";
+const SOURCE = "Dhaka";
 
 export const PRODUCTS: Product[] = [
   // ── Everyday Essentials ────────────────────────────────────────────────

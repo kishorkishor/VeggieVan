@@ -26,7 +26,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "VeggieVan — Bringing Fresh Vegetables Home Every Morning",
   description:
-    "Pre-order fresh vegetables in Dhaka between 8:00 PM and 11:59 PM. Sourced overnight at Karwan Bazar and delivered to your door from 7:00 AM across Uttara, Mirpur, Bashundhara, Khilgaon, and Dhanmondi.",
+    "Pre-order fresh vegetables in Dhaka between 8:00 PM and 11:59 PM. Sourced overnight and delivered to your door from 7:00 AM across Uttara, Mirpur, Bashundhara, Khilgaon, and Dhanmondi.",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

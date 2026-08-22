@@ -3,8 +3,8 @@ import type { ProductRow } from "@/lib/products/queries";
 const CATALOG_IMAGE_BASE = "/product-images/veggievan-catalog";
 
 export const HOME_HERO_IMAGE = {
-  src: "/home-images/veggievan-morning.webp",
-  alt: "A green delivery van with the white VeggieVan logo on its side, parked on a Dhaka residential street at sunrise with its rear doors open on crates of fresh vegetables",
+  src: "/home-images/veggievan-side.webp",
+  alt: "A green delivery van with the white VeggieVan logo on its side, seen in profile on a Dhaka residential street at sunrise",
 };
 
 export const HERO_PRODUCT_IMAGES = [

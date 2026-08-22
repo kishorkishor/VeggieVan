@@ -65,8 +65,9 @@ export function Footer() {
         ))}
       </div>
       <div className="border-t border-vv-line">
-        <div className="mx-auto max-w-7xl px-4 py-4 text-xs text-vv-mute">
+        <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 text-xs text-vv-mute sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} VeggieVan. All rights reserved.</span>
+          <span>Made by Shafayat Uddin</span>
         </div>
       </div>
     </footer>

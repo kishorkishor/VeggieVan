@@ -243,7 +243,7 @@ export default function CheckoutPage() {
                 <ol className="mt-5 space-y-3 border-t border-vv-line pt-5 text-sm">
                   {[
                     [`Tonight, ${ORDER_WINDOW.openLabel}–${ORDER_WINDOW.closeLabel}`, "Your order is confirmed and locked in."],
-                    ["Overnight", "We buy exactly what you ordered at Karwan Bazar."],
+                    ["Overnight", "We buy exactly what you ordered at the wholesale market."],
                     ["Before dawn", "Inspected, graded, weighed, and packed for your address."],
                     [`From ${DELIVERY_FROM}`, "Your van reaches your door."],
                   ].map(([when, what]) => (

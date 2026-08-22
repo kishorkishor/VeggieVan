@@ -88,7 +88,7 @@ export default async function Home() {
                 icon: <Truck />,
                 when: "Overnight",
                 title: "We source",
-                body: "We source vegetables for confirmed orders from trusted farmers and Karwan Bazar wholesalers.",
+                body: "We source vegetables for confirmed orders from trusted farmers and wholesalers.",
               },
               {
                 icon: <PackageCheck />,
